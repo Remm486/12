@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象邀请函</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", sans-serif;
+        }
+        body {
+            background: #fdf2f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+        }
+        .img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .text {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        .btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px 15px;
+            transition: all 0.3s;
+        }
+        .agree {
+            background: #f08080;
+            color: white;
+            font-weight: bold;
+        }
+        .refuse {
+            background: #e0e0e0;
+            color: #666;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img src="https://picsum.photos/80/80" class="img" alt="头像">
+        <div class="text">吕伟阳，我喜欢你很久了，可以做我女朋友嘛</div>
+        <button class="btn agree">同意</button>
+        <button class="btn refuse">拒绝</button>
+    </div>
+
+    <script>
+        const agreeBtn = document.querySelector('.agree');
+        const refuseBtn = document.querySelector('.refuse');
+        const text = document.querySelector('.text');
+        const box = document.querySelector('.box');
+
+        // 拒绝按钮随机移动
+        refuseBtn.addEventListener('mouseover', () => {
+            const boxWidth = box.offsetWidth - refuseBtn.offsetWidth;
+            const boxHeight = box.offsetHeight - refuseBtn.offsetHeight;
+            // 随机位置（避开同意按钮）
+            const randomX = Math.floor(Math.random() * boxWidth);
+            const randomY = Math.floor(Math.random() * boxHeight);
+            refuseBtn.style.position = 'absolute';
+            refuseBtn.style.left = randomX + 'px';
+            refuseBtn.style.top = randomY + 'px';
+        });
+
+        // 同意按钮效果
+        agreeBtn.addEventListener('click', () => {
+            text.textContent = '太好了！我们在一起吧~';
+            agreeBtn.textContent = '我愿意';
+            refuseBtn.style.display = 'none';
+            document.body.style.background = '#ffe4e1';
+        });
+    </script>
+</body>
+</html>
